@@ -1,0 +1,57 @@
+<div class="column gap-1 wrapper">
+    <img [src]="product.image" alt="Product Thumbnail" />
+    <h2 class="title">{{ product.name | truncateName: 16 : "..." }}</h2>
+    <div class="row gap-05">
+        <span class="price-label"> Price: </span>
+        <span class="price">
+            {{ product.price | price }}
+        </span>
+    </div>
+    <p-rating
+        [(ngModel)]="product.rating"
+        [readonly]="true"
+        iconCancelClass="hidden"
+    ></p-rating>
+
+    <div class="row gap-05">
+        <button
+            type="button"
+            pButton
+            icon="pi pi-pencil"
+            (click)="editProduct()"
+            label="Edit"
+        ></button>
+        <button
+            type="button"
+            pButton
+            icon="pi pi-trash"
+            (click)="confirmDelete()"
+            label="Delete"
+            class="p-button-danger"
+            #deleteButton
+        ></button>
+    </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>
+
+<!--
+    *Provide variables (Line 2)
+    To provide a variable to an element:
+        - square brackets should be placed at the html tag attribute.
+        E.g. <img [src]="product.image" [alt]="product.name">
+
+        - At the double quotes, add curly braces and then add the variable name to add
+        E.g. <img src="{{product.image}}" alt="{{product.name}}">
+-->
+
+<!--
+    *doubleBinding / Two way binding (Line 11)
+    When a specific property is being binded to a specific value, it may be necessary to import an additional specific module to solve the issue.
+
+    E.g. [(ngModel)]="product.rating"
+
+    The [] is useful to send data through the selector component to the class @input decorator to manipulate that data being received
+
+    The double binding means that when data is received and a specific property changes by influence of this data, that change is sent outside the component by using the EventEmmiter<Event>
+ -->

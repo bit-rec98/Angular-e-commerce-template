@@ -1,0 +1,50 @@
+<div class="column gap-1">
+    <!-- Add product button -->
+    <p-button
+        type="button"
+        icon="pi pi-plus"
+        (click)="toggleAddPopUp()"
+        label="Add product"
+        class="add-product-btn"
+    ></p-button>
+
+    <!-- Products section -->
+    <div class="row wrap gap-2 space-between">
+        <app-product
+            *ngFor="let product of products"
+            [product]="product"
+            (edit)="toggleEditPopUp($event)"
+            (delete)="toggleDeletePopUp($event)"
+        ></app-product>
+    </div>
+
+    <!-- Paginator -->
+    <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        #paginator
+    ></p-paginator>
+</div>
+
+<!-- Edit product -->
+<app-edit-popup
+    [product]="selectedProduct"
+    [(display)]="displayEditPopUp"
+    (confirm)="onConfirmEdit($event)"
+    header="Edit Product"
+></app-edit-popup>
+
+<!-- Add Product -->
+<app-edit-popup
+    [(display)]="displayAddPopUp"
+    (confirm)="onConfirmAdd($event)"
+    header="Add Product"
+></app-edit-popup>
+
+<!--
+    *ngFor
+    Allows to iterate through a set (Array/Set) of items to render them
+-->
+
