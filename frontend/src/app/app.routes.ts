@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { FormComponent } from './components/form/form.component';
 
 export const routes: Routes = [
     {
@@ -9,6 +10,10 @@ export const routes: Routes = [
     {
         path: 'about-us',
         loadChildren: () => import('./modules/about-us/about-us.module').then((e) => e.AboutUsModule)
+    },
+    {
+        path: 'contact',
+        component: FormComponent
     }
 ];
 

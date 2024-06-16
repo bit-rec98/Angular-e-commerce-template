@@ -11,9 +11,9 @@ import { ButtonModule } from 'primeng/button';
     selector: 'app-home' /* Component name (for tagging at html files) */,
     standalone: true,
     imports: [
-        ProductComponent,
         CommonModule,
         PaginatorModule,
+        ProductComponent,
         ButtonModule,
         EditPopupComponent,
     ],
@@ -94,6 +94,7 @@ export class HomeComponent {
                 next: (data: Products) => {
                     this.products = data.items;
                     this.totalRecords = data.total;
+                    console.log(this.products)
                 },
                 error: (error) => {
                     console.log(error);
@@ -155,6 +156,9 @@ export class HomeComponent {
 
     ngOnInit() {
         this.fetchProducts(0, this.rows);
+        setTimeout(() => {
+            console.log(this.products)
+        }, 5000)
     }
 }
 
@@ -173,6 +177,3 @@ export class HomeComponent {
     *CommonModule
     It contains all the common functionality which is used by angular by default
 */
-
-
-//! Continuar en 2:40:00
